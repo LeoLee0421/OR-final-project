@@ -176,9 +176,12 @@ def generate_instance(
         "u": U,
         "a": A,
         "b": B,
-        "w1": 0.4,
-        "w2": 0.4,
-        "w3": 0.2,
+        # Equal per-unit sensitivity: w_i ∝ denominator_i
+        # denom_gap=17, denom_pref=679, n_avg=95  → sum=791
+        # Each raw-unit change in any component moves z by the same Δz ≈ 0.001264
+        "w1": round(17  / 791, 8),   # ≈ 0.02149
+        "w2": round(679 / 791, 8),   # ≈ 0.85841
+        "w3": round(95  / 791, 8),   # ≈ 0.12010
         "ins_male_required": INS_MALE_REQ,
         "ins_female_required": INS_FEMALE_REQ,
         "time_limit": 300,
